@@ -18,7 +18,7 @@ pipeline{
         sh 'mvn test'
       }
       }
-    stage("Build & SonarQube analysis") {
+    /* stage("Build & SonarQube analysis") {
             agent any
             steps {
               withSonarQubeEnv('SonarSpring') {
@@ -31,7 +31,7 @@ pipeline{
             steps {
                 waitForQualityGate abortPipeline: true
             }
-        }
+        } */
   
     stage('collect artifact'){
      steps{
@@ -43,7 +43,7 @@ pipeline{
      steps{
      
      rtUpload (
-    serverId: 'ARTIFACTORY_SERVER',
+    serverId: 'maven-teammgt',
     spec: '''{
           "files": [
             {
@@ -62,7 +62,7 @@ pipeline{
             steps{
      
                 rtDownload (
-                    serverId: 'ARTIFACTORY_SERVER',
+                    serverId: 'maven-teammgt',
                     spec: '''{
                     "files": [
                          {
