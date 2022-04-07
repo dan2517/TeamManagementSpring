@@ -1,8 +1,6 @@
 pipeline{
-  agent any  
-    tools{
-      maven 'Maven:3.6.3-jdk-11'
-    }
+
+  agent any 
 
   stages {
     stage('Build'){
@@ -32,22 +30,22 @@ pipeline{
             }
         } */
   
-    stage('collect artifact'){
+    /*stage('collect artifact'){
      steps{
      archiveArtifacts artifacts: 'target/*.jar', followSymlinks: false
      }
-     }
+     }*/
      stage('deploy to artifactory')
      {
      steps{
      
      rtUpload (
-    serverId: 'maven-teammgt',
+    serverId: 'Jfrog-teammgt',
     spec: '''{
           "files": [
             {
               "pattern": "target/*.jar",
-              "target": "art-doc-dev-loc"
+              "target": "maven-teammgt"
             }
          ]
     }''',
@@ -61,12 +59,12 @@ pipeline{
             steps{
      
                 rtDownload (
-                    serverId: 'maven-teammgt',
+                    serverId: 'Jfrog-teammgt',
                     spec: '''{
                     "files": [
                          {
                              "pattern": "art-doc-dev-loc/",
-                             "target": ""
+                             "target": "maven-teammgt"
                         }
                      ]
                 }''',
