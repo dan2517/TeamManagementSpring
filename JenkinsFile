@@ -49,7 +49,7 @@ pipeline
           "files": [
             {
               "pattern": "target/*.jar",
-              "target": "maven-teammgt"
+              "target": "TeamMgtMJ"
             }
          ]
     }''',
@@ -68,7 +68,7 @@ pipeline
                     "files": [
                          {
                              "pattern": "art-doc-dev-loc/",
-                             "target": "maven-teammgt"
+                             "target": "TeamMgtMJ"
                         }
                      ]
                 }''',
